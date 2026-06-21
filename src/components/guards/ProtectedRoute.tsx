@@ -1,0 +1,17 @@
+import { Navigate } from "react-router-dom";
+import type { ReactNode } from "react";
+import { TokenManager } from "../../utils/tokenManager";
+
+interface Props {
+  children: ReactNode;
+}
+
+export function ProtectedRoute({ children }: Props) {
+  const token = TokenManager.getAccessToken();
+
+  if (!token) {
+    return <Navigate to="/login" replace />;
+  }
+
+  return <>{children}</>;
+}
