@@ -12,6 +12,10 @@ export function Sidebar() {
         <NavLink to="/lost-found">İtkin/Tapılan</NavLink>
         <NavLink to="/team-finder">Team Finder</NavLink>
         <NavLink to="/messages">Mesajlar</NavLink>
+        <NavLink to="/admin/authorization-endpoints">
+  Authorization Endpoints
+</NavLink>
+<NavLink to="/admin/roles">Roles</NavLink>
       </nav>
     </aside>
   );
