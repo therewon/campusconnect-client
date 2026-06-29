@@ -80,13 +80,17 @@ console.log(jwtDecode(accessToken));
         required
       />
 
-      <button type="submit" disabled={loading}>
-        {loading ? "Yüklənir..." : "Daxil ol"}
-      </button>
+     <button type="submit" disabled={loading}>
+  {loading ? "Yüklənir..." : "Daxil ol"}
+</button>
 
-      <p className="auth-link">
-        Hesabın yoxdur? <Link to="/register">Qeydiyyatdan keç</Link>
-      </p>
+<p className="auth-link">
+  <Link to="/forgot-password">Şifrəni unutmusunuz?</Link>
+</p>
+
+<p className="auth-link">
+  Hesabın yoxdur? <Link to="/register">Qeydiyyatdan keç</Link>
+</p>
     </form>
   );
 }
