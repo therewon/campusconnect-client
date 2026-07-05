@@ -21,6 +21,10 @@ import AdminAnnouncementsPage from "../features/admin/pages/AdminAnnouncementsPa
 import AuthorizationEndpointsPage from "../features/admin/pages/AuthorizationEndpointsPage";
 import RolesPage from "../features/admin/pages/RolesPage";
 
+import TeamFinderPage from "../features/team-finder/pages/TeamFinderPage";
+import CreateTeamFinder from "../features/team-finder/pages/CreateTeamFinderPage";
+import TeamFinderDetailPage from "../features/team-finder/pages/TeamFinderDetailPage";
+
 export const router = createBrowserRouter([
   // 1. Публичные маршруты (Авторизация)
   {
@@ -44,12 +48,12 @@ export const router = createBrowserRouter([
       },
     ],
   },
-
+  
   // 2. Защищенные маршруты (Все объединены под одним MainLayout)
   {
     element: (
       <ProtectedRoute>
-        <MainLayout />
+      <MainLayout />
       </ProtectedRoute>
     ),
     children: [
@@ -84,7 +88,7 @@ export const router = createBrowserRouter([
         path: "/admin/announcements",
         element: (
           <RoleGuard>
-            <AdminAnnouncementsPage />
+          <AdminAnnouncementsPage />
           </RoleGuard>
         ),
       },
@@ -92,7 +96,7 @@ export const router = createBrowserRouter([
         path: "/admin/authorization-endpoints",
         element: (
           <RoleBasedRoute allowedRoles={["SuperAdmin"]}>
-            <AuthorizationEndpointsPage />
+          <AuthorizationEndpointsPage />
           </RoleBasedRoute>
         ),
       },
@@ -100,13 +104,25 @@ export const router = createBrowserRouter([
         path: "/admin/roles",
         element: (
           <RoleBasedRoute allowedRoles={["SuperAdmin"]}>
-            <RolesPage />
+          <RolesPage />
           </RoleBasedRoute>
         ),
       },
+      {
+        path: "/team-finder",
+        element: <TeamFinderPage />,
+      },
+      {
+        path: "/team-finder/create",
+        element: <CreateTeamFinder />,
+      },
+      {
+        path: "/team-finder/:id",
+        element: <TeamFinderDetailPage />,
+      },
     ],
   },
-
+  
   // 3. Дефолтный редирект для несуществующих страниц
   {
     path: "*",
