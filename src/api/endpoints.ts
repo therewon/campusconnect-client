@@ -27,4 +27,11 @@ export const ENDPOINTS = {
     
     DISLIKE: "/likes/dislike",
   },
+  TEAM_FINDER: {
+    GET_ALL: "/TeamFinder/all",
+
+    CREATE: "/TeamFinder",
+
+    APPLY: (id: number) => `/TeamFinder/${id}/apply`,
+},
 };
