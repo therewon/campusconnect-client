@@ -15,6 +15,23 @@ export const ENDPOINTS = {
     GET_BY_POST: (id: number) => `/comments/post/${id}`,
     CREATE: "/comments",
   },
+
+ADMIN: {
+  GET_USERS: "/admin/users",
+
+  BAN_USER: (id: string) => `/admin/users/${id}/ban`,
+
+  UNBAN_USER: (id: string) => `/admin/users/${id}/unban`,
+
+  GET_STATS: "/admin/stats",
+
+  APPROVE_ANNOUNCEMENT: (id: number) =>
+    `/admin/announcements/${id}/approve`,
+
+  REJECT_ANNOUNCEMENT: (id: number) =>
+    `/admin/announcements/${id}/reject`,
+},
+
   ADMIN: {
     APPROVE_ANNOUNCEMENT: (id: number) =>
       `/admin/announcements/${id}/approve`,
@@ -29,9 +46,17 @@ export const ENDPOINTS = {
     UPDATE: (id: number) => `/events/${id}`,
     DELETE: (id: number) => `/events/${id}`,
   },
+
   LIKES: {
     LIKE: "/likes/like",
 
     DISLIKE: "/likes/dislike",
   },
+  TEAM_FINDER: {
+    GET_ALL: "/TeamFinder/all",
+
+    CREATE: "/TeamFinder",
+
+    APPLY: (id: number) => `/TeamFinder/${id}/apply`,
+},
 };

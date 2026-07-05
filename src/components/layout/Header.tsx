@@ -1,19 +1,43 @@
-import { useNavigate } from "react-router-dom";
-import { TokenManager } from "../../utils/tokenManager";
+import NotificationBadge from "../../features/notifications/components/NotificationBadge";
 
-export function Header() {
-  const navigate = useNavigate();
+export default function Header() {
 
-  function handleLogout() {
-    TokenManager.clearTokens();
-    navigate("/login");
-  }
+    return (
 
-  return (
-    <header className="header">
-      <h3>CampusConnect</h3>
+        <header className="header">
 
-      <button onClick={handleLogout}>Çıxış</button>
-    </header>
-  );
+            <h2>CampusConnect</h2>
+
+            <div className="header-right">
+
+                <div className="notification">
+
+                    🔔
+
+                    <NotificationBadge/>
+
+                </div>
+
+                <div className="profile">
+
+                    <div className="avatar">
+
+                        M
+
+                    </div>
+
+                    <span>
+
+                        Mirtalıb
+
+                    </span>
+
+                </div>
+
+            </div>
+
+        </header>
+
+    );
+
 }
