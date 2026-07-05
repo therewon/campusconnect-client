@@ -16,6 +16,12 @@ import DashboardPage from "../features/dashboard/pages/DashboardPage";
 import AnnouncementsPage from "../features/announcements/pages/AnnouncementsPage";
 import CreateAnnouncementPage from "../features/announcements/pages/CreateAnnouncementPage";
 
+
+
+import EventsPage from "../features/events/pages/EventsPage";
+import CreateEventPage from "../features/events/pages/CreateEventPage";
+import EditEventPage from "../features/events/pages/EditEventPage";
+
 import AdminAnnouncementsPage from "../features/admin/pages/AdminAnnouncementsPage";
 import AuthorizationEndpointsPage from "../features/admin/pages/AuthorizationEndpointsPage";
 import RolesPage from "../features/admin/pages/RolesPage";
@@ -24,6 +30,10 @@ import AdminDashboardPage from "../features/admin/pages/AdminDashboardPage";
 
 import MessagesPage from "../features/messages/pages/MessagesPage";
 import NotificationsPage from "../features/notifications/pages/NotificationsPage";
+
+import TeamFinderPage from "../features/team-finder/pages/TeamFinderPage";
+import CreateTeamFinder from "../features/team-finder/pages/CreateTeamFinderPage";
+import TeamFinderDetailPage from "../features/team-finder/pages/TeamFinderDetailPage";
 
 export const router = createBrowserRouter([
   // Public Routes
@@ -49,11 +59,16 @@ export const router = createBrowserRouter([
     ],
   },
 
+
   // Protected Routes
+
+  
+  // 2. Защищенные маршруты (Все объединены под одним MainLayout)
+
   {
     element: (
       <ProtectedRoute>
-        <MainLayout />
+      <MainLayout />
       </ProtectedRoute>
     ),
     children: [
@@ -72,6 +87,7 @@ export const router = createBrowserRouter([
         element: <CreateAnnouncementPage />,
       },
 
+
       // Messages
       {
         path: "/messages",
@@ -85,11 +101,27 @@ export const router = createBrowserRouter([
       },
 
       // Admin Announcements
+
+      // Hadisələr (Events)
+      {
+        path: "/events",
+        element: <EventsPage />,
+      },
+      {
+        path: "/events/create",
+        element: <CreateEventPage />,
+      },
+      {
+        path: "/events/:id/edit",
+        element: <EditEventPage />,
+      },
+      // Панель администратора
+
       {
         path: "/admin/announcements",
         element: (
           <RoleGuard>
-            <AdminAnnouncementsPage />
+          <AdminAnnouncementsPage />
           </RoleGuard>
         ),
       },
@@ -119,7 +151,7 @@ export const router = createBrowserRouter([
         path: "/admin/authorization-endpoints",
         element: (
           <RoleBasedRoute allowedRoles={["SuperAdmin"]}>
-            <AuthorizationEndpointsPage />
+          <AuthorizationEndpointsPage />
           </RoleBasedRoute>
         ),
       },
@@ -129,14 +161,31 @@ export const router = createBrowserRouter([
         path: "/admin/roles",
         element: (
           <RoleBasedRoute allowedRoles={["SuperAdmin"]}>
-            <RolesPage />
+          <RolesPage />
           </RoleBasedRoute>
         ),
+      },
+      {
+        path: "/team-finder",
+        element: <TeamFinderPage />,
+      },
+      {
+        path: "/team-finder/create",
+        element: <CreateTeamFinder />,
+      },
+      {
+        path: "/team-finder/:id",
+        element: <TeamFinderDetailPage />,
       },
     ],
   },
 
+
   // Fallback
+
+  
+  // 3. Дефолтный редирект для несуществующих страниц
+
   {
     path: "*",
     element: <Navigate to="/login" replace />,
