@@ -17,6 +17,9 @@ import CreateAnnouncementPage from "../features/announcements/pages/CreateAnnoun
 import EventsPage from "../features/events/pages/EventsPage";
 import CreateEventPage from "../features/events/pages/CreateEventPage";
 import EditEventPage from "../features/events/pages/EditEventPage";
+import LostFoundPage from "../features/lost-found/pages/LostFoundPage";
+import CreateLostFoundPage from "../features/lost-found/pages/CreateLostFoundPage";
+import LostFoundDetailPage from "../features/lost-found/pages/LostFoundDetailPage";
 import AdminAnnouncementsPage from "../features/admin/pages/AdminAnnouncementsPage";
 import AuthorizationEndpointsPage from "../features/admin/pages/AuthorizationEndpointsPage";
 import RolesPage from "../features/admin/pages/RolesPage";
@@ -78,6 +81,19 @@ export const router = createBrowserRouter([
       {
         path: "/events/:id/edit",
         element: <EditEventPage />,
+      },
+      // İtirilmiş & Tapılmış (Lost & Found)
+      {
+        path: "/lost-found",
+        element: <LostFoundPage />,
+      },
+      {
+        path: "/lost-found/create",
+        element: <CreateLostFoundPage />,
+      },
+      {
+        path: "/lost-found/:id",
+        element: <LostFoundDetailPage />,
       },
       // Панель администратора
       {

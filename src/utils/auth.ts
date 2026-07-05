@@ -2,28 +2,60 @@ import { jwtDecode } from "jwt-decode";
 import { TokenManager } from "./tokenManager";
 
 interface JwtPayload {
-    Role?: string;
-    role?: string;
-
-    ["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]?: string;
+  Role?: string | string[];
+  role?: string | string[];
+  ["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"]?: string | string[];
 }
 
-export function getCurrentRole() {
-    const token = TokenManager.getAccessToken();
+// Returns the role(s) as a flat string array
+export function getUserRoles(): string[] {
+  const token = TokenManager.getAccessToken();
+  if (!token) return [];
 
-    if (!token)
-        return null;
+  try {
+    const decoded = jwtDecode<JwtPayload>(token);
+    const raw =
+      decoded.Role ??
+      decoded.role ??
+      decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] ??
+      null;
 
-    try {
-        const decoded = jwtDecode<JwtPayload>(token);
+    if (!raw) return [];
+    return Array.isArray(raw) ? raw : [raw];
+  } catch {
+    return [];
+  }
+}
 
-        return (
-            decoded.Role ??
-            decoded.role ??
-            decoded["http://schemas.microsoft.com/ws/2008/06/identity/claims/role"] ??
-            null
-        );
-    } catch {
-        return null;
-    }
+// Backward-compatible helper — returns first role as string
+export function getCurrentRole(): string | null {
+  const roles = getUserRoles();
+  return roles.length > 0 ? roles[0] : null;
+}
+
+export function hasRole(role: string): boolean {
+  return getUserRoles().includes(role);
+}
+
+export function isAdmin(): boolean {
+  const roles = getUserRoles();
+  return roles.includes("Admin") || roles.includes("SuperAdmin");
+}
+
+export function getCurrentUserId(): string | null {
+  const token = TokenManager.getAccessToken();
+  if (!token) return null;
+  try {
+    const decoded = jwtDecode<any>(token);
+    return (
+      decoded["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"] ??
+      decoded.sub ??
+      decoded.nameid ??
+      decoded.UserId ??
+      decoded.userId ??
+      null
+    );
+  } catch {
+    return null;
+  }
 }
