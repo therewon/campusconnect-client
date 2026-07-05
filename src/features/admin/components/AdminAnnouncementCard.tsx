@@ -6,7 +6,6 @@ import {
   CheckCircle, 
   XCircle, 
   Clock, 
-  User, 
   Calendar, 
   Eye, 
   AlertCircle,
