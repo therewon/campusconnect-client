@@ -131,24 +131,26 @@ export function AnnouncementCard({ announcement }: Props) {
   const like = useLike();
   const dislike = useDislike();
   
-  const handleLikeToggle = () => {
-    // console.log({
-    //   postId: announcement.id,
-    //   postType: 0
-    // });
+const handleLikeToggle = () => {
+  console.log("Clicked");
+  console.log({
+    postId: announcement.id,
+    postType: 0,
+    isLiked: announcement.isLikedByCurrentUser,
+  });
 
-    if (announcement.isLikedByCurrentUser) {
-      dislike.mutate({
-        postId: announcement.id,
-        postType: 0,
-      });
-    } else {
-      like.mutate({
-        postId: announcement.id,
-        postType: 0,
-      });
-    }
-  };
+  if (announcement.isLikedByCurrentUser) {
+    dislike.mutate({
+      postId: announcement.id,
+      postType: 0,
+    });
+  } else {
+    like.mutate({
+      postId: announcement.id,
+      postType: 0,
+    });
+  }
+};
   
   const timeAgo = formatTimeAgo(announcement.createdAt);
   

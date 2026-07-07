@@ -1,5 +1,29 @@
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useEffect } from "react";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { notificationService } from "../services/notificationService";
+import signalRService from "../../../lib/signalr/signalr";
+
+export const useRealtimeNotifications = () => {
+  const queryClient = useQueryClient();
+
+  useEffect(() => {
+    signalRService.start();
+
+    signalRService.on("ReceiveNotification", () => {
+      queryClient.invalidateQueries({
+        queryKey: ["notifications"],
+      });
+
+      queryClient.invalidateQueries({
+        queryKey: ["notification-count"],
+      });
+    });
+
+    return () => {
+      signalRService.off("ReceiveNotification");
+    };
+  }, [queryClient]);
+};
 
 export const useNotifications = () =>
   useQuery({

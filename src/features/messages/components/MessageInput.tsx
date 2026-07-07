@@ -1,52 +1,45 @@
-import {useState} from "react";
-import {useSendMessage} from "../hooks/useMessages";
+import { useState } from "react";
+import { useSendMessage } from "../hooks/useMessages";
 
-interface Props{
-    receiverId:string;
+interface Props {
+  receiverId: string;
 }
 
 export default function MessageInput({
-    receiverId
-}:Props){
+  receiverId,
+}: Props) {
+  const [text, setText] = useState("");
 
-    const[text,setText]=useState("");
+  const sendMessage = useSendMessage();
 
-    const send=useSendMessage();
+  async function handleSend() {
+    if (!text.trim()) return;
 
-    const handleSend=()=>{
+    await sendMessage.mutateAsync({
+      receiverId,
+      content: text,
+    });
 
-        if(!text.trim()) return;
+    setText("");
+  }
 
-        send.mutate({
+  return (
+    <div className="message-input">
 
-            receiverId,
+      <input
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        placeholder="Mesaj yaz..."
+        onKeyDown={(e) => {
+          if (e.key === "Enter")
+            handleSend();
+        }}
+      />
 
-            content:text
+      <button onClick={handleSend}>
+        Göndər
+      </button>
 
-        });
-
-        setText("");
-
-    }
-
-    return(
-
-        <div className="message-input">
-
-            <input
-                value={text}
-                onChange={(e)=>setText(e.target.value)}
-                placeholder="Mesaj yaz..."
-            />
-
-            <button
-                onClick={handleSend}
-            >
-                Göndər
-            </button>
-
-        </div>
-
-    )
-
+    </div>
+  );
 }

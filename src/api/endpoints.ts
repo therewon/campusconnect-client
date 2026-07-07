@@ -31,14 +31,6 @@ ADMIN: {
   REJECT_ANNOUNCEMENT: (id: number) =>
     `/admin/announcements/${id}/reject`,
 },
-
-  ADMIN: {
-    APPROVE_ANNOUNCEMENT: (id: number) =>
-      `/admin/announcements/${id}/approve`,
-
-    REJECT_ANNOUNCEMENT: (id: number) =>
-      `/admin/announcements/${id}/reject`,
-  },
   EVENTS: {
     GET_ALL: "/events",
     GET_BY_ID: (id: number) => `/events/${id}`,
