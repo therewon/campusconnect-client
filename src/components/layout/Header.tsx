@@ -1,43 +1,40 @@
 import NotificationBadge from "../../features/notifications/components/NotificationBadge";
+import {
+  useRealtimeNotifications,
+} from "../../features/notifications/hooks/useNotifications";
 
 export default function Header() {
 
-    return (
+  // SignalR notification dinləyicisini başladır
+  useRealtimeNotifications();
 
-        <header className="header">
+  return (
+    <header className="header">
 
-            <h2>CampusConnect</h2>
+      <h2>CampusConnect</h2>
 
-            <div className="header-right">
+      <div className="header-right">
 
-                <div className="notification">
+        <div className="notification">
 
-                    🔔
+          <NotificationBadge />
 
-                    <NotificationBadge/>
+        </div>
 
-                </div>
+        <div className="profile">
 
-                <div className="profile">
+          <div className="avatar">
+            M
+          </div>
 
-                    <div className="avatar">
+          <span>
+            Mirtalıb
+          </span>
 
-                        M
+        </div>
 
-                    </div>
+      </div>
 
-                    <span>
-
-                        Mirtalıb
-
-                    </span>
-
-                </div>
-
-            </div>
-
-        </header>
-
-    );
-
+    </header>
+  );
 }

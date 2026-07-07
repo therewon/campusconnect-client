@@ -4,11 +4,17 @@ import { RouterProvider } from "react-router-dom";
 import { router } from "./app/router";
 import { AppProviders } from "./app/providers";
 import "./styles/index.css";
+import { MessageProvider } from "./context/MessageContext.tsx";
+import { NotificationProvider } from "./context/NotificationContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <AppProviders>
-      <RouterProvider router={router} />
+      <MessageProvider>
+        <NotificationProvider>
+          <RouterProvider router={router} />
+        </NotificationProvider>
+      </MessageProvider>
     </AppProviders>
   </StrictMode>
 );
