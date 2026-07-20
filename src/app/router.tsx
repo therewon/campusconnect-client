@@ -1,11 +1,11 @@
 import { createBrowserRouter, Navigate } from "react-router-dom";
 
-import { AuthLayout } from "../components/layout/AuthLayout";
 import MainLayout from "../components/layout/MainLayout";
-import { ProtectedRoute } from "../components/guards/ProtectedRoute";
 import { RoleBasedRoute } from "../components/guards/RoleBasedRoute";
 import { RoleGuard } from "../components/guards/RoleGuard";
 
+import { AuthLayout } from "../components/layout/AuthLayout";
+import { ProtectedRoute } from "../components/guards/ProtectedRoute";
 import LoginPage from "../features/auth/pages/LoginPage";
 import RegisterPage from "../features/auth/pages/RegisterPage";
 import ForgotPasswordPage from "../features/auth/pages/ForgotPasswordPage";
@@ -73,9 +73,9 @@ export const router = createBrowserRouter([
 
   {
     element: (
-      <ProtectedRoute>
+    // <ProtectedRoute>
       <MainLayout />
-      </ProtectedRoute>
+    // </ProtectedRoute>
     ),
     children: [
       {

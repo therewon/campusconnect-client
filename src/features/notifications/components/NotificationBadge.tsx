@@ -5,9 +5,9 @@ export default function NotificationBadge() {
   const { data } = useUnreadCount();
 
   return (
-    <div className="notification-icon">
+    <div className="items-center flex h-full">
 
-      <Bell size={22} />
+      <Bell size={20} />
 
       {data !== undefined && data > 0 && (
         <span className="notification-badge">

@@ -12,7 +12,7 @@ export default function MainLayout() {
 
         <Header />
 
-        <main className="page-content">
+        <main>
           <Outlet />
         </main>
 

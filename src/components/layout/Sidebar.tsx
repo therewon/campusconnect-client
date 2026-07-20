@@ -12,6 +12,7 @@ import {
   KeyRound,
   BadgeCheck,
 } from "lucide-react";
+import Logo from '../../assets/CampusConnectLogo.svg'
 
 import { getCurrentRole } from "../../utils/auth";
 
@@ -27,18 +28,15 @@ export default function Sidebar() {
   return (
     <aside className="sidebar">
 
-      <div className="logo">
+      <div className="flex items-start gap-4 mb-2">
 
-        <div className="logo-circle">
-          CC
+        <div>
+          <img className="w-10 h-10 mb-6" src={Logo} alt="" />
         </div>
 
         <div>
-
-          <h2>CampusConnect</h2>
-
-          <span>Admin Panel</span>
-
+          <h2 className="text-xl font-bold mb-0 leading-5">CampusConnect</h2>
+          <span className="text-[#B8C4FF] text-[10px] tracking-[1px] leading-3.75">NATIONAL DIGITAL SYSTEM</span>
         </div>
 
       </div>
