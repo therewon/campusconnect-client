@@ -1,7 +1,13 @@
-export default function SuccessModal({ onClose }) {
+interface SuccessModalProps {
+  onClose: () => void;
+}
+
+export default function SuccessModal({
+  onClose,
+}: SuccessModalProps) {
   return (
-    <div className="fixed inset-0 z-[100] flex items-center justify-center bg-inverse-surface/40 backdrop-blur-sm">
-      <div className="bg-white rounded-xl p-2xl max-w-md w-full text-center shadow-2xl animate-in zoom-in-95 duration-300">
+    <div className="fixed inset-0 z-100 flex items-center justify-center bg-inverse-surface/40 backdrop-blur-sm">
+      <div className="bg-white rounded-xl p-2xl sm:max-w-md max-w-75 w-full text-center shadow-2xl animate-in zoom-in-95 duration-300">
         <div className="w-20 h-20 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mx-auto mb-lg">
           <span className="material-symbols-outlined text-5xl">
             check_circle

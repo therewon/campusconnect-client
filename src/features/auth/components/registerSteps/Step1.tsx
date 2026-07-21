@@ -8,9 +8,6 @@ const Step1 = ({ setStep }: StepProps) => {
 
 
 
-  const nextStep = () => {
-    setStep((prev) => prev + 1);
-  };
 
 
 
@@ -93,7 +90,7 @@ const Step1 = ({ setStep }: StepProps) => {
           </div>
           {/* Form Container */}
           <form
-            className="glass-card rounded-xl p-xl shadow-sm min-h-125 flex flex-col"
+            className="glass-card rounded-xl sm:p-xl p-md shadow-sm min-h-125 flex flex-col"
             id="registrationForm"
           >
             {/* Step 1: Personal Information */}
@@ -167,231 +164,16 @@ const Step1 = ({ setStep }: StepProps) => {
                 </div>
               </div>
             </div>
-            {/* Step 2: Academic Details */}
-            <div className="step-transition hidden" id="step-content-2">
-              <div className="space-y-xl">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
-                  <div className="flex flex-col gap-xs">
-                    <label className="font-label-md text-label-md font-bold text-on-surface-variant uppercase">
-                      Universitet
-                    </label>
-                    <select className="h-10 px-md border border-outline-variant rounded bg-white form-input-focus text-body-md">
-                      <option value="">Seçin...</option>
-                      <option value="ada">ADA Universiteti</option>
-                      <option value="unec">
-                        Azərbaycan Dövlət İqtisad Universiteti
-                      </option>
-                      <option value="asoiu">
-                        Azərbaycan Dövlət Neft və Sənaye Universiteti
-                      </option>
-                      <option value="bmu">Bakı Mühəndislik Universiteti</option>
-                    </select>
-                  </div>
-                  <div className="flex flex-col gap-xs">
-                    <label className="font-label-md text-label-md font-bold text-on-surface-variant uppercase">
-                      Fakültə
-                    </label>
-                    <input
-                      className="h-10 px-md border border-outline-variant rounded bg-white form-input-focus text-body-md"
-                      placeholder="Məs: İnformasiya Texnologiyaları"
-                      type="text"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-xs">
-                    <label className="font-label-md text-label-md font-bold text-on-surface-variant uppercase">
-                      İxtisas / Kafedra
-                    </label>
-                    <input
-                      className="h-10 px-md border border-outline-variant rounded bg-white form-input-focus text-body-md"
-                      placeholder="Məs: Kompüter Elmləri"
-                      type="text"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-xs">
-                    <label className="font-label-md text-label-md font-bold text-on-surface-variant uppercase">
-                      Tələbə ID
-                    </label>
-                    <input
-                      className="h-10 px-md border border-outline-variant rounded bg-white form-input-focus text-body-md"
-                      placeholder="ST123456"
-                      type="text"
-                    />
-                  </div>
-                  <div className="flex flex-col gap-xs">
-                    <label className="font-label-md text-label-md font-bold text-on-surface-variant uppercase">
-                      Cari Semestr
-                    </label>
-                    <div className="flex gap-md">
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input
-                          className="text-primary focus:ring-primary h-4 w-4"
-                          name="semester"
-                          type="radio"
-                        />
-                        <span className="text-body-md">Payız</span>
-                      </label>
-                      <label className="flex items-center gap-2 cursor-pointer">
-                        <input
-                          className="text-primary focus:ring-primary h-4 w-4"
-                          name="semester"
-                          type="radio"
-                        />
-                        <span className="text-body-md">Yaz</span>
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* Step 3: Interests & Skills */}
-            <div className="step-transition hidden" id="step-content-3">
-              <div className="space-y-xl">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
-                  <div className="flex flex-col gap-md">
-                    <label className="font-label-md text-label-md font-bold text-on-surface-variant uppercase">
-                      Maraq Sahələri
-                    </label>
-                    <div className="flex flex-wrap gap-2">
-                      <span className="px-md py-1 bg-surface-container-highest border border-outline-variant rounded-full text-body-md cursor-pointer hover:bg-primary-container hover:text-white transition-colors">
-                        IT &amp; Proqramlaşdırma
-                      </span>
-                      <span className="px-md py-1 bg-surface-container-highest border border-outline-variant rounded-full text-body-md cursor-pointer hover:bg-primary-container hover:text-white transition-colors">
-                        Biznes &amp; İdarəetmə
-                      </span>
-                      <span className="px-md py-1 bg-surface-container-highest border border-outline-variant rounded-full text-body-md cursor-pointer hover:bg-primary-container hover:text-white transition-colors">
-                        Mühəndislik
-                      </span>
-                      <span className="px-md py-1 bg-surface-container-highest border border-outline-variant rounded-full text-body-md cursor-pointer hover:bg-primary-container hover:text-white transition-colors">
-                        İncəsənət
-                      </span>
-                      <span className="px-md py-1 bg-surface-container-highest border border-outline-variant rounded-full text-body-md cursor-pointer hover:bg-primary-container hover:text-white transition-colors">
-                        Tibb
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-xs">
-                    <label className="font-label-md text-label-md font-bold text-on-surface-variant uppercase">
-                      Texniki Bacarıqlar
-                    </label>
-                    <textarea
-                      className="p-md border border-outline-variant rounded bg-white form-input-focus text-body-md"
-                      placeholder="Məs: Python, Figma, Microsoft Office, SQL..."
-                      rows={3}
-                      defaultValue={""}
-                    />
-                  </div>
-                  <div className="md:col-span-2">
-                    <label className="font-label-md text-label-md font-bold text-on-surface-variant uppercase block mb-md">
-                      Dil Bilikləri
-                    </label>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-md">
-                      <div className="flex items-center justify-between p-md border border-outline-variant rounded bg-surface">
-                        <span className="font-body-md font-semibold">
-                          Azərbaycan dili
-                        </span>
-                        <span className="text-primary font-label-md text-label-md">
-                          C2 (Ana dili)
-                        </span>
-                      </div>
-                      <div className="flex items-center justify-between p-md border border-outline-variant rounded bg-white">
-                        <span className="font-body-md">İngilis dili</span>
-                        <select className="border-none bg-transparent p-0 font-label-md text-label-md text-primary">
-                          <option>A1</option>
-                          <option>A2</option>
-                          <option>B1</option>
-                          <option>B2</option>
-                          <option selected>C1</option>
-                          <option>C2</option>
-                        </select>
-                      </div>
-                      <div className="flex items-center justify-between p-md border border-outline-variant rounded bg-white">
-                        <span className="font-body-md">Türk dili</span>
-                        <select className="border-none bg-transparent p-0 font-label-md text-label-md text-primary">
-                          <option>A1</option>
-                          <option>A2</option>
-                          <option>B1</option>
-                          <option>B2</option>
-                          <option>C1</option>
-                          <option selected>C2</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            {/* Step 4: Social & Career */}
-            <div className="step-transition hidden" id="step-content-4">
-              <div className="space-y-xl">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-xl">
-                  <div className="flex flex-col gap-xs">
-                    <label className="font-label-md text-label-md font-bold text-on-surface-variant uppercase">
-                      LinkedIn Profil Linki
-                    </label>
-                    <div className="flex">
-                      <span className="inline-flex items-center px-3 rounded-l border border-r-0 border-outline-variant bg-surface-container-low text-on-surface-variant">
-                        <span className="material-symbols-outlined text-sm">
-                          link
-                        </span>
-                      </span>
-                      <input
-                        className="h-10 px-md flex-1 border border-outline-variant rounded-r bg-white form-input-focus text-body-md"
-                        placeholder="linkedin.com/in/username"
-                        type="url"
-                      />
-                    </div>
-                  </div>
-                  <div className="flex flex-col gap-xs">
-                    <label className="font-label-md text-label-md font-bold text-on-surface-variant uppercase">
-                      Şəxsi Veb-sayt / Portfoli
-                    </label>
-                    <div className="flex">
-                      <span className="inline-flex items-center px-3 rounded-l border border-r-0 border-outline-variant bg-surface-container-low text-on-surface-variant">
-                        <span className="material-symbols-outlined text-sm">
-                          public
-                        </span>
-                      </span>
-                      <input
-                        className="h-10 px-md flex-1 border border-outline-variant rounded-r bg-white form-input-focus text-body-md"
-                        placeholder="www.yourname.com"
-                        type="url"
-                      />
-                    </div>
-                  </div>
-                  <div className="md:col-span-2 flex flex-col gap-xs">
-                    <label className="font-label-md text-label-md font-bold text-on-surface-variant uppercase">
-                      Qısa Bioqrafiya
-                    </label>
-                    <textarea
-                      className="p-md border border-outline-variant rounded bg-white form-input-focus text-body-md"
-                      placeholder="Özünüz haqqında, akademik və karyera hədəfləriniz barədə qısa məlumat yazın..."
-                      rows={5}
-                      defaultValue={""}
-                    />
-                    <p className="text-right font-label-md text-label-md text-on-surface-variant">
-                      0 / 500 simvol
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
+            
              {/* Footer Navigation Buttons */}
             <div className="mt-auto pt-xl border-t border-outline-variant flex justify-between items-center">
-              <button
-                className="flex items-center gap-2 px-lg py-3 rounded-lg border border-outline-variant text-primary font-bold hover:bg-surface-container transition-all invisible opacity-0 disabled:opacity-30"
-                id="prevBtn"
-                type="button"
-              >
-                <span className="material-symbols-outlined">arrow_back</span>
-                Geri
-              </button>
+              <div></div>
               <div className="flex items-center gap-md">
                 <span className="hidden sm:inline font-label-md text-label-md text-on-surface-variant italic">
                   Bütün məlumatların düzgünlüyündən əmin olun.
                 </span>
                 <button
                   className="flex items-center gap-2 px-xl py-3 rounded-lg bg-primary text-white font-bold hover:shadow-lg active:scale-95 transition-all"
-                  
                   onClick={() => {
                     console.log("Button clicked");
                     setStep(2);

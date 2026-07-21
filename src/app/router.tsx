@@ -5,7 +5,7 @@ import { RoleBasedRoute } from "../components/guards/RoleBasedRoute";
 import { RoleGuard } from "../components/guards/RoleGuard";
 
 import { AuthLayout } from "../components/layout/AuthLayout";
-import { ProtectedRoute } from "../components/guards/ProtectedRoute";
+// import { ProtectedRoute } from "../components/guards/ProtectedRoute";
 import LoginPage from "../features/auth/pages/LoginPage";
 import RegisterPage from "../features/auth/pages/RegisterPage";
 import ForgotPasswordPage from "../features/auth/pages/ForgotPasswordPage";
@@ -40,6 +40,7 @@ import NotificationsPage from "../features/notifications/pages/NotificationsPage
 import TeamFinderPage from "../features/team-finder/pages/TeamFinderPage";
 import CreateTeamFinder from "../features/team-finder/pages/CreateTeamFinderPage";
 import TeamFinderDetailPage from "../features/team-finder/pages/TeamFinderDetailPage";
+import RegistrationForm from '../components/registration/RegistrationForm.tsx'
 
 export const router = createBrowserRouter([
   // Public Routes
@@ -61,6 +62,10 @@ export const router = createBrowserRouter([
       {
         path: "/reset-password",
         element: <ResetPasswordPage />,
+      },
+      {
+        path: "/registation",
+        element: <RegistrationForm />,
       },
     ],
   },

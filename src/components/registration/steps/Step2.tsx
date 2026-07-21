@@ -1,8 +1,9 @@
 export default function Step2() {
     return (
-        <div className="space-y-xl">
+        <div className="w-full px-md">
+            <div className="space-y-xl max-w-4xl mx-auto w-full px-md bg-surface-container-lowest border border-outline-variant py-md rounded-xl shadow-md">
             <div className="mb-lg">
-                <h2 className="font-headline-lg text-headline-lg-mobile lg:text-headline-lg text-on-surface mb-2">
+                <h2 className="font-headline-lg text-headline-lg lg:text-headline-lg text-on-surface mb-2">
                     Akademik Detallar
                 </h2>
 
@@ -196,6 +197,7 @@ export default function Step2() {
                     </div>
                 </div>
             </div>
+        </div>
         </div>
             );
 }
