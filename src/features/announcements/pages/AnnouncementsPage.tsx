@@ -44,7 +44,7 @@ export default function AnnouncementsPage() {
         {/* Современная кнопка добавления */}
         <Link
           to="/announcements/create"
-          className="inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white font-semibold text-sm px-5 py-3 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md"
+          className="inline-flex items-center justify-center gap-2 bg-slate-900 hover:bg-slate-800 text-white! font-semibold text-sm px-5 py-3 rounded-xl transition-all duration-200 shadow-sm hover:shadow-md"
         >
           <Plus size={18} />
           <span>Yeni Elan</span>
@@ -52,7 +52,7 @@ export default function AnnouncementsPage() {
       </div>
 
       {/* Сетка карточек */}
-      {data && data.length > 0 ? (
+      {/* {data && data.length > 0 ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {data.map((announcement) => (
             <AnnouncementCard key={announcement.id} announcement={announcement} />
@@ -62,7 +62,7 @@ export default function AnnouncementsPage() {
         <div className="text-center py-16 border-2 border-dashed border-slate-200 rounded-2xl bg-slate-50/50">
           <p className="text-slate-400 font-medium">Hələ heç bir elan yoxdur.</p>
         </div>
-      )}
+      )} */}
     </div>
   );
 }

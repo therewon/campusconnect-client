@@ -111,7 +111,7 @@ export default function TeamFinderPage() {
           bg-slate-900
           px-5
           py-3
-          text-white
+          text-white!
           font-semibold
           hover:bg-blue-600
           transition
@@ -127,7 +127,7 @@ export default function TeamFinderPage() {
 
       {/* Grid */}
 
-      {data && data.length > 0 ? (
+      {/* {data && data.length > 0 ? (
 
         <div
           className="
@@ -213,7 +213,7 @@ export default function TeamFinderPage() {
 
         </div>
 
-      )}
+      )} */}
 
     </div>
   );

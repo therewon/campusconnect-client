@@ -15,7 +15,7 @@ export function ConversationList({
 
   return (
     <div className="conversation-list">
-      {users?.map((user: any) => (
+      {/* {users?.map((user: any) => (
         <div
           key={user.otherUserId}
           className={
@@ -34,7 +34,7 @@ export function ConversationList({
             <small>{user.lastMessageContent}</small>
           </div>
         </div>
-      ))}
+      ))} */}
     </div>
   );
 }
