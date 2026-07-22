@@ -119,3 +119,9 @@
     backdrop-filter: blur(10px);
     border: 1px solid #e5e7eb;
 }
+
+.bento-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 24px;
+        }

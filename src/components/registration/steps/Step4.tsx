@@ -1,7 +1,17 @@
 import { Link } from 'react-router-dom'
+import confetti from "canvas-confetti";
+
 
 
 const Step4 = () => {
+
+  confetti({
+    particleCount: 250,
+    spread: 180,
+    origin: { y: 0 },
+    ticks: 500,
+  });
+
     return (
         <div className='min-h-screen flex flex-col items-center'>
             <main className="w-full max-w-4xl px-md py-xl relative z-10">

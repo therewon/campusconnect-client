@@ -26,7 +26,7 @@ export default function Sidebar() {
     role === "SuperAdmin";
 
   return (
-    <aside className="sidebar">
+    <aside className="sidebar max-md:hidden!">
 
       <div className="flex items-start gap-4 mb-2">
 
