@@ -6,8 +6,8 @@ import confetti from "canvas-confetti";
 const Step4 = () => {
 
   confetti({
-    particleCount: 250,
-    spread: 180,
+    particleCount: 200,
+    spread: 150,
     origin: { y: 0 },
     ticks: 500,
   });

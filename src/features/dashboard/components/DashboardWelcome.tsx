@@ -7,7 +7,7 @@ const DashboardWelcome = () => {
             <div className="relative z-10 grid md:grid-cols-2 gap-md items-center">
               <div>
                 <h2 className="font-headline-lg text-headline-lg mb-xs">
-                  Hoş gəldin, Zaur! 👋
+                  Xoş gəldin, Rewon! 👋
                 </h2>
                 <p className="font-body-lg text-body-lg text-on-primary-container max-w-xl">
                   You have 3 lectures today and a pending assignment for Advanced
