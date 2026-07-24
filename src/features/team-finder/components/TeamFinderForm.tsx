@@ -63,7 +63,7 @@ export function TeamFinderForm() {
       onSubmit={submit}
       className="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden"
     >
-      <div className="bg-gradient-to-r from-indigo-600 via-blue-600 to-cyan-500 p-8 text-white">
+      <div className="bg-linear-to-r from-indigo-600 via-blue-600 to-cyan-500 p-8 text-white">
         <div className="flex items-center gap-3 mb-3">
           <div className="w-14 h-14 rounded-2xl bg-white/20 backdrop-blur flex items-center justify-center">
             <Users size={28} />

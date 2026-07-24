@@ -41,6 +41,10 @@ import TeamFinderPage from "../features/team-finder/pages/TeamFinderPage";
 import CreateTeamFinder from "../features/team-finder/pages/CreateTeamFinderPage";
 import TeamFinderDetailPage from "../features/team-finder/pages/TeamFinderDetailPage";
 import RegistrationForm from '../components/registration/RegistrationForm.tsx'
+import UniversitiesPage from "../features/universities/pages/UniversitiesPage.tsx";
+import UniversitiesDetailPage from "../features/universities/pages/UniversitiesDetailPage.tsx";
+import HomePage from "../features/home/page/HomePage.tsx";
+import { HomeLayout } from "../components/layout/HomeLayout.tsx";
 
 export const router = createBrowserRouter([
   // Public Routes
@@ -66,6 +70,16 @@ export const router = createBrowserRouter([
     ],
   },
 
+  {
+    element: <HomeLayout />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />
+      }
+    ]
+  },
+
 
   // Protected Routes
 
@@ -79,8 +93,9 @@ export const router = createBrowserRouter([
     // </ProtectedRoute>
     ),
     children: [
+      // Dashboard
       {
-        path: "/",
+        path: "/dashboard",
         element: <DashboardPage />,
       },
 
@@ -105,6 +120,17 @@ export const router = createBrowserRouter([
       {
         path: "/notifications",
         element: <NotificationsPage />,
+      },
+
+      // Universities
+      {
+        path: "/universities",
+        element: <UniversitiesPage />
+      },
+
+      {
+        path: "/universities/:id",
+        element: <UniversitiesDetailPage />
       },
 
       // Admin Announcements

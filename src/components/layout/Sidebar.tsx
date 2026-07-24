@@ -26,7 +26,7 @@ export default function Sidebar() {
     role === "SuperAdmin";
 
   return (
-    <aside className="sidebar max-md:hidden!">
+    <aside className="sidebar max-md:hidden! sticky top-0 h-screen">
 
       <div className="flex items-start gap-4 mb-2">
 
@@ -43,38 +43,43 @@ export default function Sidebar() {
 
       <div className="sidebar-section">
 
-        <NavLink to="/">
-          <LayoutDashboard size={20}/>
+        <NavLink to="/dashboard">
+          <LayoutDashboard size={20} />
           Dashboard
         </NavLink>
 
+        <NavLink to="/universities">
+            <span className="material-symbols-outlined">account_balance</span>
+            Universities
+        </NavLink>
+
         <NavLink to="/announcements">
-          <Megaphone size={20}/>
+          <Megaphone size={20} />
           Elanlar
         </NavLink>
 
         <NavLink to="/events">
-          <CalendarDays size={20}/>
+          <CalendarDays size={20} />
           Hadisələr
         </NavLink>
 
         <NavLink to="/lost-found">
-          <Search size={20}/>
+          <Search size={20} />
           İtkin/Tapılan
         </NavLink>
 
         <NavLink to="/team-finder">
-          <Users size={20}/>
+          <Users size={20} />
           Team Finder
         </NavLink>
 
         <NavLink to="/messages">
-          <MessageCircle size={20}/>
+          <MessageCircle size={20} />
           Mesajlar
         </NavLink>
 
         <NavLink to="/notifications">
-          <Bell size={20}/>
+          <Bell size={20} />
           Bildirişlər
         </NavLink>
 
@@ -89,17 +94,17 @@ export default function Sidebar() {
           </div>
 
           <NavLink to="/admin">
-            <Shield size={20}/>
+            <Shield size={20} />
             Dashboard
           </NavLink>
 
           <NavLink to="/admin/users">
-            <Users size={20}/>
+            <Users size={20} />
             Users
           </NavLink>
 
           <NavLink to="/admin/announcements">
-            <BadgeCheck size={20}/>
+            <BadgeCheck size={20} />
             Moderasiya
           </NavLink>
 
@@ -116,12 +121,12 @@ export default function Sidebar() {
           </div>
 
           <NavLink to="/admin/authorization-endpoints">
-            <KeyRound size={20}/>
+            <KeyRound size={20} />
             Authorization
           </NavLink>
 
           <NavLink to="/admin/roles">
-            <UserCog size={20}/>
+            <UserCog size={20} />
             Roles
           </NavLink>
 

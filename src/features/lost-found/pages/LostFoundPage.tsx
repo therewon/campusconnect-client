@@ -5,11 +5,34 @@ import { LostFoundFilter } from "../components/LostFoundFilter";
 import { Link } from "react-router-dom";
 import { Plus, PackageSearch } from "lucide-react";
 import type { LostFoundStatus } from "../types/lostFound.types";
+import Header from "../components/Header";
+import { lostAndFound } from "../data/data"
+import Card from "../components/Card";
+import { categories } from "../data/data";
+import type { Category } from "../data/data";
+import CategoryCard from "../components/CategoryCard";
+import Add from "../components/Add";
+import AddModal from "../components/AddModal";
 
 const LostFoundPage: React.FC = () => {
   const { items, loading, error, deleteItem, updateStatus } = useLostFound();
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<LostFoundStatus | "All">("All");
+  const [toggleSwitch, setToggleSwitch] = useState(true)
+  const [typeFilter, setTypeFilter] = useState<"lost" | "found">("lost");
+  const [isOpen, setIsOpen] = useState(false);
+  const [categoryFilter, setCategoryFilter] =
+    useState<Category>("all");
+
+  const filteredItems = lostAndFound.filter((item: { type: string; category: string; }) => {
+    const typeMatch = item.type === typeFilter;
+
+    const categoryMatch =
+      categoryFilter === "all" ||
+      item.category === categoryFilter;
+
+    return typeMatch && categoryMatch;
+  });
 
   const filtered = useMemo(() => {
     const q = search.toLowerCase();
@@ -34,80 +57,48 @@ const LostFoundPage: React.FC = () => {
   );
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      {/* Page header */}
-      <div className="flex justify-between items-start gap-4 mb-8">
-        <div>
-          <h1 className="text-3xl font-bold text-gray-900">
-            İtirilmiş &amp; Tapılmış
-          </h1>
-          <p className="text-gray-500 mt-1">
-            Kampus daxilindəki itirilmiş və tapılmış əşyalar
-          </p>
-        </div>
-        <Link
-          to="/lost-found/create"
-          className="flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors shrink-0"
-        >
-          <Plus className="w-5 h-5" />
-          <span>Yeni Elan</span>
-        </Link>
-      </div>
+    <main className="flex flex-col pb-24 lg:pb-0">
+      <div className=" p-lg space-y-lg max-w-300 mx-auto w-full">
+        <Header typeFilter={typeFilter}
+          setTypeFilter={setTypeFilter} />
+        {/* Dashboard Row: Quick Stats & Filters */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-lg">
+          <div className="md:col-span-1 space-y-lg">
+            {/* Categories */}
+            <div className="bg-white border border-outline-variant rounded-xl p-md shadow-sm">
+              <h3 className="font-label-md font-bold text-outline mb-md uppercase tracking-tighter">
+                Categories
+              </h3>
+              <div className="space-y-sm">
+                {categories.map((category) => (
+                  <CategoryCard key={category.id} category={category} categoryFilter={categoryFilter} setCategoryFilter={setCategoryFilter} />
+                ))}
+              </div>
+            </div>
 
-      {/* Error */}
-      {error && (
-        <div className="bg-red-50 text-red-600 p-4 rounded-lg mb-6 border border-red-100">
-          {error}
-        </div>
-      )}
-
-      {/* Filters */}
-      <div className="mb-6">
-        <LostFoundFilter
-          search={search}
-          onSearchChange={setSearch}
-          statusFilter={statusFilter}
-          onStatusChange={setStatusFilter}
-          counts={counts}
-        />
-      </div>
-
-      {/* Content */}
-      {loading ? (
-        <div className="flex justify-center items-center py-16">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary" />
-        </div>
-      ) : filtered.length === 0 ? (
-        <div className="text-center py-16 bg-white rounded-xl shadow-sm border border-gray-100">
-          <PackageSearch className="w-12 h-12 text-gray-300 mx-auto mb-3" />
-          <p className="text-gray-500 font-medium">
-            {search || statusFilter !== "All"
-              ? "Axtarış nəticəsi tapılmadı."
-              : "Hələ heç bir elan yoxdur."}
-          </p>
-          {!search && statusFilter === "All" && (
-            <Link
-              to="/lost-found/create"
-              className="inline-flex items-center gap-2 mt-4 text-primary text-sm font-medium hover:underline"
+          </div>
+          {/* Main Grid: Item Cards */}
+          <div className="md:col-span-3">
+            <div
+              className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-lg"
+              id="items-grid"
             >
-              <Plus className="w-4 h-4" />
-              İlk elanı siz yaradın
-            </Link>
-          )}
+
+              
+                <Add  setIsOpen={setIsOpen}/>
+              {
+                filteredItems.map((item) => (
+                  <Card key={item.id} item={item} />
+                ))
+              }
+            </div>
+          </div>
         </div>
-      ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filtered.map((item) => (
-            <LostFoundCard
-              key={item.id}
-              item={item}
-              onDelete={deleteItem}
-              onStatusChange={updateStatus}
-            />
-          ))}
-        </div>
-      )}
-    </div>
+      </div>
+
+      <AddModal isOpen={isOpen} onClose={() => setIsOpen(false)} />
+    </main>
+
   );
 };
 

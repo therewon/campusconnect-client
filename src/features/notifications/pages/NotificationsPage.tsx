@@ -1,4 +1,4 @@
-import NotificationDropdown from "../components/NotificationDropdown";
+// import NotificationDropdown from "../components/NotificationDropdown";
 
 export default function NotificationsPage() {
 

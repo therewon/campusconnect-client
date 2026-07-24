@@ -1,14 +1,18 @@
-export interface Message {
+import type { Timestamp } from "firebase/firestore";
+
+export interface Conversation {
+  id: string;
+  participantIds: string[];
+  participantNames: Record<string, string>;
+  lastMessage: string;
+  lastMessageAt: Timestamp | null;
+  lastSenderId: string;
+}
+
+export interface ChatMessage {
   id: string;
   senderId: string;
   receiverId: string;
   content: string;
-  createdAt: string;
-}
-
-export interface Conversation {
-  userId: string;
-  fullName: string;
-  lastMessage: string;
-  lastMessageTime: string;
+  createdAt: Timestamp | null;
 }

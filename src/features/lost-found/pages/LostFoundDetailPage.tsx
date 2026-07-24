@@ -77,7 +77,7 @@ const LostFoundDetailPage: React.FC = () => {
       <div className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
         {/* Header gradient */}
         <div
-          className={`bg-gradient-to-b ${cfg.headerBg} px-6 py-6 border-b border-gray-100`}
+          className={`bg-linear-to-b ${cfg.headerBg} px-6 py-6 border-b border-gray-100`}
         >
           <div className="flex items-start gap-3">
             <span className="text-4xl">{cfg.icon}</span>

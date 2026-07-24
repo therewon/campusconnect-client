@@ -63,7 +63,7 @@ export function TeamFinderCard({ teamFinder }: Props) {
         right-0
         h-1
         rounded-t-3xl
-        bg-gradient-to-r
+        bg-linear-to-r
         from-blue-500
         via-purple-500
         to-pink-500

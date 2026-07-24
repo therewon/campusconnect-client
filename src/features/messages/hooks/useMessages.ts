@@ -1,40 +1,72 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { messageService } from "../services/messageService";
+import { useEffect, useState } from "react";
+import {
+  ensureFirebaseSession,
+  subscribeToConversations,
+  subscribeToMessages,
+} from "../services/messageService";
+import type { ChatMessage, Conversation } from "../types/message.types";
 
-export const useConversations = () =>
-  useQuery({
-    queryKey: ["conversations"],
-    queryFn: messageService.getConversations,
-  });
+export function useFirebaseSession() {
+  const [userId, setUserId] = useState("");
+  const [error, setError] = useState("");
 
-export const useMessages = (userId: string) =>
-  useQuery({
-    queryKey: ["messages", userId],
-    queryFn: () => messageService.getMessages(userId),
-    enabled: !!userId,
-    refetchOnWindowFocus: false,
-  });
+  useEffect(() => {
+    ensureFirebaseSession()
+      .then((user) => setUserId(user.uid))
+      .catch((reason: unknown) =>
+        setError(
+          reason instanceof Error
+            ? reason.message
+            : "Firebase bağlantısı qurulmadı.",
+        ),
+      );
+  }, []);
 
-export const useSendMessage = () => {
-  const queryClient = useQueryClient();
+  return { userId, isLoading: !userId && !error, error };
+}
 
-  return useMutation({
-    mutationFn: ({
-      receiverId,
-      content,
-    }: {
-      receiverId: string;
-      content: string;
-    }) => messageService.sendMessage(receiverId, content),
+export function useConversations(userId: string) {
+  const [data, setData] = useState<Conversation[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState("");
 
-    onSuccess: (_, variables) => {
-      queryClient.invalidateQueries({
-        queryKey: ["messages", variables.receiverId],
-      });
+  useEffect(() => {
+    if (!userId) return;
+    return subscribeToConversations(
+      userId,
+      (items) => {
+        setData(items);
+        setIsLoading(false);
+      },
+      (reason) => {
+        setError(reason.message);
+        setIsLoading(false);
+      },
+    );
+  }, [userId]);
 
-      queryClient.invalidateQueries({
-        queryKey: ["conversations"],
-      });
-    },
-  });
-};
+  return { data, isLoading, error };
+}
+
+export function useMessages(chatId: string | null) {
+  const [data, setData] = useState<ChatMessage[]>([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    if (!chatId) return;
+    return subscribeToMessages(
+      chatId,
+      (items) => {
+        setData(items);
+        setIsLoading(false);
+      },
+      (reason) => {
+        setError(reason.message);
+        setIsLoading(false);
+      },
+    );
+  }, [chatId]);
+
+  return { data, isLoading, error };
+}
